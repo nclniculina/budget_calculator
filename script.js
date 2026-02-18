@@ -93,7 +93,7 @@ totalExpense += t.amount;
 }
 }
 
-const balance = total Income - totalExpense;
+const balance = totalIncome - totalExpense;
 
 // показываем суммы
 totalIncomeEl.textContent = totalIncome.toFixed(2);

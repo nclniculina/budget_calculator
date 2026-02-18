@@ -122,7 +122,7 @@ localStorage.setItem("transactions", JSON.stringify(transactions));
 function loadFromLocalStorage() {
 const saved = localStorage.getItem("transactions");
 
-id (saved) {
+if (saved) {
 transactions = JSON.parse(saved);
 }
 }

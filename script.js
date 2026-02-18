@@ -89,7 +89,7 @@ for (const t of transactions) {
 if (t.type === "income") {
 totalIncome += t.amount;
 } else {
-total Expense += t.amount;
+totalExpense += t.amount;
 }
 }
 

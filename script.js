@@ -85,7 +85,7 @@ let totalIncome = 0;
 let totalExpense = 0;
 
 // считаем суммы
-for const t of transactions) {
+for (const t of transactions) {
 if (t.type === "income") {
 totalIncome += t.amount;
 } else {

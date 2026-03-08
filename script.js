@@ -1,7 +1,7 @@
-// Массив, где будут храниттся все операции
+// Array für alle Transaktionen (Einnahmen und Ausgaben)
 let transactions = [];
 
-// === 1) Находим элементы на странице ===
+// === 1) Elemente von der Seite auswählen ===
 const incomeAmountEl = document.getElementById("incomeAmount");
 const incomeCategoryEl = document.getElementById("incomeCategory");
 const addIncomeBtn = document.getElementById("addIncomeBtn");
@@ -16,53 +16,57 @@ const balanceEl = document.getElementById("balance");
 
 const historyListEl = document.getElementById("historyList");
 
-// === 2) Загружаем данные из localStorage при запуске ===
+// === 2) Daten aus localStorage laden und rendern beim Start ===
 loadFromLocalStorage();
 render();
 
-// === 3) Доход ===
+// === 3) Einnahme hinzufügen ===
 addIncomeBtn.addEventListener("click", () => {
 const amount = parseFloat(incomeAmountEl.value);
 const category = incomeCategoryEl.value.trim();
 
+// Eingabekontrolle
 if (isNaN(amount) || amount <= 0) {
-alert("Введите сумму дохода!");
+alert("Geben Sie den Einnahmebetrag ein!");
     return;
   }
 
 if (category === "") {
-alert("Введите категорию дохода!");
+alert("Geben Sie die Einnahmenkategorie ein!");
     return;
   }
 
+// Neue Einnahme speichern
 transactions.push({
 type: "income",
 category: category,
 amount: amount,
   });
 
-saveToLocalStorage();
-  render();
+saveToLocalStorage(); // Speichern
+  render();           // Anzeige aktualisieren
 
+// Eingabefelder leeren
 incomeAmountEl.value = "";
 incomeCategoryEl.value = "";
   });
 
-// === 4) Расход ===
+// === 4) Ausgabe hinzufügen ===
 addExpenseBtn.addEventListener("click", () => {
 const amount = parseFloat(expenseAmountEl.value);
 const category = expenseCategoryEl.value.trim();
 
 if (isNaN(amount) || amount <= 0) {
-alert("Введите сумму расхода!");
+alert("Geben Sie den Ausgabenbetrag ein!");
     return;
   }
 
 if (category === "") {
-alert("Введите категорию расхода!");
+alert("Geben Sie Ausgabenkategorie ein!");
     return;
   }
 
+// Neue Ausgabe speichern
 transactions.push({
 type: "expense",
 category: category,
@@ -76,15 +80,17 @@ expenseAmountEl.value = "";
 expenseCategoryEl.value = "";
 });
 
-// === 5) Функция пересчёта и отображения ===
+
+// === 5) Funktion zum Berechnen und Anzeigen der Summen ===
 function render() {
-// очищаем список истории
+    
+// Verlauf löschen
 historyListEl.innerHTML = "";
 
 let totalIncome = 0;
 let totalExpense = 0;
 
-// считаем суммы
+// Summen berechnen
 for (const t of transactions) {
 if (t.type === "income") {
 totalIncome += t.amount;
@@ -95,15 +101,15 @@ totalExpense += t.amount;
 
 const balance = totalIncome - totalExpense;
 
-// показываем суммы
+// Summen anzeigen
 totalIncomeEl.textContent = totalIncome.toFixed(2);
 totalExpense.textContent = totalExpense.toFixed(2);
 balanceEl.textContent = balance.toFixed(2);
 
-// вводим историю операций
+// Transaktionsverlauf anzeigen
 for (const t of transactions) {
 const li = document.createElement("li");
-li.classList.add(t.type); // доход или расход
+li.classList.add(t.type); // CSS-Klasse: income oder expense
 if (t.type === "income") {
 li.textContent = `+ ${t.amount.toFixed(2)} - ${t.category}`;
 } else {
@@ -114,7 +120,7 @@ historyListEl.appendChild(li);
 }
 }
 
-// === 6) localStorage ===
+// === 6) localStorage Funktionen ===
 function saveToLocalStorage() {
 localStorage.setItem("transactions", JSON.stringify(transactions));
 }

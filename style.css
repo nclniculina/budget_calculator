@@ -1,5 +1,6 @@
+/* === Allgemeine Einstellungen === */
 * {
-box-sizing: border-box;
+box-sizing: border-box; /* Padding und Border werden in die Größe des Elements eingerechnet */
 }
 
 body {
@@ -19,7 +20,7 @@ font-size: 18px;
 color: #374151;
 }
 
-/* ===== Блоки ===== */
+/* === Blöcke: Eingaben, Zusammenfassung, Verlauf === */
 .budget-inputs,
 .budget-summary,
 .history {
@@ -32,7 +33,7 @@ box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 margin-bottom: 20px;
 }
 
-/* ===== Поля ввода ===== */
+/* === Eingabefelder === */
 .budget-inputs input {
 width: 100%;
 padding: 14px 16px;
@@ -49,7 +50,7 @@ border-color: #6366f1;
 box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
 }
 
-/* ====== Кнопки ====== */
+/* === Buttons === */
 button {
 width: 100%;
 padding: 14px 16px;
@@ -68,7 +69,7 @@ transform: translateY(-2px);
 background: linear-gradient(120deg, #4f46e5, #4338ca);
 }
 
-/* ===== Баланс ===== */
+/* === Budget Zusammenfassung === */
 .budget-summary p {
 margin: 10px 0;
 font-size: 16px;
@@ -79,19 +80,19 @@ font-weight: bold;
 }
 
 #totalIncome {
-color: #16a34a;
+color: #16a34a;  /* grün für Einnahmen */
 }
 
 #totalExpense {
-color: #dc2626;
+color: #dc2626;  /* rot für Ausgaben */
 }
 
 #balance {
  color: #111827;
-font-size: 18px;
+font-size: 18px;  /* Kontostand hervorheben */
 }
 
-/* ====== История операций ====== */
+/* === Transaktionsverlauf === */
 .history ul {
 list-style: none;
 padding: 0;
@@ -100,7 +101,7 @@ margin: 0;
 
 .history li {
 background: #f9fafb;
-border-left: 6px solid #6366f1; /* базовый цвет */
+border-left: 6px solid #6366f1; /* Standardfarbe */
 border-radius: 16px;
 padding: 14px 16px;
 margin-bottom: 12px;
@@ -108,10 +109,10 @@ font-size: 15px;
 display: flex;
 justify-content: space-between;
 align-items: center;
-animation: fadeIn 0.25s ease;
+animation: fadeIn 0.25s ease;   /* sanftes Einblenden */
 }
 
-/* разные цвета для дохода/расхода */
+/* unterschiedliche Farben für Einnahmen/Ausgaben */
 .history li.income {
 border-left-color: #16a34a;
 }
@@ -120,7 +121,7 @@ border-left-color: #16a34a;
 border-left-color: #dc2626;
 }
 
-/* анимация появления */
+/* === Animation === */
 @keyframes fadeIn {
 from {
 opacity: 0;
